@@ -1,0 +1,33 @@
+{
+  "name": "chaosorganizer-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon ./src/app.js",
+    "prepare": "husky install",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Votchitsev/ChaosOrganizer-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Votchitsev/ChaosOrganizer-server/issues"
+  },
+  "homepage": "https://github.com/Votchitsev/ChaosOrganizer-server#readme",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1",
+    "nodemon": "^2.0.20"
+  }
+}
