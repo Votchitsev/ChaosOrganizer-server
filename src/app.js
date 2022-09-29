@@ -6,7 +6,7 @@ const Storage = require('./Storage');
 const storage = new Storage();
 const app = new Koa();
 
-app.use(KoaBody());
+app.use(KoaBody({ multipart: true }));
 
 app.use(async (ctx, next) => {
   if (ctx.request.method !== 'OPTIONS') {
@@ -23,9 +23,9 @@ app.use(async (ctx) => {
   ctx.response.set('Access-Control-Allow-Origin', '*');
 
   if (ctx.request.method === 'POST') {
-    const data = ctx.request.body.content.text;
+    const data = ctx.request.body;
     storage.addTextPost(data);
-    ctx.response.ok = true;
+    ctx.status = 200;
   }
 
   if (ctx.request.method === 'GET') {

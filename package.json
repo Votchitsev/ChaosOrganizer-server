@@ -21,7 +21,8 @@
   "homepage": "https://github.com/Votchitsev/ChaosOrganizer-server#readme",
   "dependencies": {
     "koa": "^2.13.4",
-    "koa-body": "^5.0.0"
+    "koa-body": "^5.0.0",
+    "koa-limit": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "^8.24.0",

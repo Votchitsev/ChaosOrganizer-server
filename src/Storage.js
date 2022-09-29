@@ -3,13 +3,20 @@ class Storage {
     this.textPosts = new Set();
   }
 
-  addTextPost(text) {
+  addTextPost(data) {
     const post = {
-      type: 'textPosts',
-      content: {
-        text,
-      },
+      type: data.type,
+      time: data.time,
+      text: data.text,
+      files: data.file,
     };
+
+    if (!Array.isArray(data.file)) {
+      const f = [];
+      f.push(data.file);
+      post.files = f;
+    }
+
     this.textPosts.add(post);
   }
 
