@@ -20,8 +20,12 @@ class Storage {
     this.textPosts.add(post);
   }
 
-  getTextPostList() {
-    return this.textPosts;
+  getTextPostList(pagination) {
+    const arr = Array.from(this.textPosts)
+      .reverse()
+      .slice(Number(pagination.start), Number(pagination.end) + 1);
+
+    return new Set(arr);
   }
 }
 

@@ -30,7 +30,7 @@ app.use(async (ctx) => {
 
   if (ctx.request.method === 'GET') {
     ctx.response.body = JSON.stringify(
-      [...storage.getTextPostList()],
+      [...storage.getTextPostList(ctx.request.query)],
     );
   }
 });
