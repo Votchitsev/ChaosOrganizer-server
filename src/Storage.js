@@ -20,10 +20,27 @@ class Storage {
     this.textPosts.add(post);
   }
 
-  getTextPostList(pagination) {
-    const arr = Array.from(this.textPosts)
+  getTextPostList(param) {
+    let arr;
+
+    if (param.search) {
+      arr = Array.from(this.textPosts)
+        .reverse();
+
+      const filtredArr = [];
+
+      for (let i = 0; i < arr.length; i += 1) {
+        if (arr[i].text.toLowerCase().includes(param.search.toLowerCase())) {
+          filtredArr.push(arr[i]);
+        }
+      }
+
+      return new Set(filtredArr);
+    }
+
+    arr = Array.from(this.textPosts)
       .reverse()
-      .slice(Number(pagination.start), Number(pagination.end) + 1);
+      .slice(Number(param.start), Number(param.end) + 1);
 
     return new Set(arr);
   }
