@@ -1,5 +1,6 @@
 const Koa = require('koa');
 const KoaBody = require('koa-body');
+const { v1: uuidv1 } = require('uuid');
 
 const Storage = require('./Storage');
 
@@ -24,8 +25,12 @@ app.use(async (ctx) => {
 
   if (ctx.request.method === 'POST') {
     const data = ctx.request.body;
-    storage.addTextPost(data);
+    const id = uuidv1();
+    storage.addTextPost(data, id);
     ctx.status = 200;
+    ctx.response.body = JSON.stringify({
+      id,
+    });
   }
 
   if (ctx.request.method === 'GET') {
@@ -33,6 +38,12 @@ app.use(async (ctx) => {
       [...storage.getTextPostList(ctx.request.query)],
     );
   }
+
+  if (ctx.request.method === 'DELETE') {
+    const { id } = ctx.request.query;
+    storage.deletePost(id);
+    ctx.response.status = 200;
+  }
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 8080);

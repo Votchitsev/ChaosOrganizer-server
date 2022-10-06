@@ -3,8 +3,9 @@ class Storage {
     this.textPosts = new Set();
   }
 
-  addTextPost(data) {
+  addTextPost(data, id) {
     const post = {
+      id,
       type: data.type,
       time: data.time,
       text: data.text,
@@ -43,6 +44,14 @@ class Storage {
       .slice(Number(param.start), Number(param.end) + 1);
 
     return new Set(arr);
+  }
+
+  deletePost(id) {
+    this.textPosts.forEach((element) => {
+      if (element.id === id) {
+        this.textPosts.delete(element);
+      }
+    });
   }
 }
 
